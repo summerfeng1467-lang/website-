@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>慢慢来 · 解压小世界</title>
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+
+<div id="home" class="page">
+<header><div class="logo" data-i18n="brand">慢慢来</div><div class="tools"><button id="soundBtn" class="soundbtn" onclick="toggleSound()" aria-label="声音">🔊</button><div class="lang" aria-label="Language"><button id="zhBtn" class="active" onclick="setLang('zh')">中文</button><button id="enBtn" onclick="setLang('en')">EN</button></div></div></header>
+<section class="hero"><h1 data-i18n="heroTitle">今天，想怎么放松？</h1><p data-i18n="heroText">没有任务，没有输赢。选一个喜欢的小世界，待一会儿。</p></section>
+<section class="cards">
+<div class="card" onclick="openGame('tree')"><div class="num">01</div><div class="icon">🍎</div><b data-i18n="treeTitle">摇一摇苹果树</b><p data-i18n="treeText">轻轻摇晃树枝，让苹果掉下来。每一棵树都有不一样的苹果数量。</p></div>
+<div class="card" onclick="openGame('star')"><div class="num">02</div><div class="icon">✦</div><b data-i18n="starTitle">拾起星星</b><p data-i18n="starText">慢慢看流星划过夜空。点开一颗星星，收下一句安慰、夸夸或好心情。</p></div>
+<div class="card" onclick="openGame('book')"><div class="num">03</div><div class="icon">📚</div><b data-i18n="bookTitle">整理书架</b><p data-i18n="bookText">把高高低低的书慢慢摆整齐。每次放下书，都有轻轻的摩擦与木头声音。</p></div>
+<div class="card" onclick="openGame('clock')"><div class="num">04</div><div class="icon">◷</div><b data-i18n="clockTitle">时间模式</b><p data-i18n="clockText">黑色屏幕上的大号数字时钟，自动使用你设备所在时区的正确时间。</p></div>
+<div class="card" onclick="openGame('bubble')"><div class="num">05</div><div class="icon">○</div><b data-i18n="bubbleTitle">戳泡泡</b><p data-i18n="bubbleText">看着泡泡慢慢变大，轻轻戳破它。</p></div>
+</section>
+<div class="foot" data-i18n="foot">慢一点，也没关系。</div>
+</div>
+
+<section id="tree" class="game"><div class="gamebar"><button class="back" onclick="goHome()" data-i18n="back">← 返回</button><div class="gametitle" data-i18n="treeTitle">摇一摇苹果树</div><div class="tiny" data-i18n="treeTiny">轻轻一点</div></div><div class="gamecontent"><div id="treeNotice" class="notice" data-i18n="treeNotice">轻轻左右滑动树冠。</div><div class="treebox" id="treebox"><div class="tree" id="treeObj"><div class="canopy"></div><div class="branch b1"></div><div class="branch b2"></div><div class="branch b3"></div><div class="trunk"></div></div><div class="basket" id="basket"><span class="basketCount" id="basketCount">0</span></div><div class="done" id="treeDone"><span><span data-i18n="treeDone">这棵树已经摘取完所有的苹果了。</span><small data-i18n="treeNext">轻点一下屏幕，换一棵树</small></span></div></div></div></section>
+
+<section id="star" class="game"><div class="gamebar"><button class="back" onclick="goHome()" data-i18n="back">← 返回</button><div class="gametitle" data-i18n="starTitle">拾起星星</div><div class="tiny" data-i18n="starTiny">慢慢看</div></div><div class="gamecontent"><div class="notice" data-i18n="starNotice">点一颗星星，把它折进小瓶子里。</div><div class="sky" id="sky"><div class="bottle" id="bottle"></div><div class="message" id="message"><div id="messageText"></div><button class="closemsg" onclick="closeMessage()" data-i18n="starClose">收好这句话</button></div></div></div></section>
+
+<section id="book" class="game"><div class="gamebar"><button class="back" onclick="goHome()" data-i18n="back">← 返回</button><div class="gametitle" data-i18n="bookTitle">整理书架</div><div class="tiny" data-i18n="bookTiny">慢慢摆整齐</div></div><div class="gamecontent"><div class="notice" data-i18n="bookNotice">拖动书本，放到你觉得舒服的位置。</div><div class="library" id="library"><div class="wallplant"><div class="stem"></div><div class="leaf2 l1"></div><div class="leaf2 l2"></div><div class="leaf2 l3"></div><div class="pot"></div></div><div class="shelfline"></div><div class="bookrow" id="bookrow"></div></div><div class="soundhint" data-i18n="bookSound">放下书本时，会有很轻的「沙沙」与木头声。</div></div></section>
+
+<section id="bubble" class="game"><div class="gamebar"><button class="back" onclick="goHome()" data-i18n="back">← 返回</button><div class="gametitle" data-i18n="bubbleTitle">戳泡泡</div><div class="tiny" data-i18n="bubbleTiny">轻轻戳</div></div><div class="gamecontent"><div class="notice" data-i18n="bubbleNotice">看着泡泡慢慢变大，想戳哪一颗就轻轻点哪一颗。</div><div class="bubble-field" id="bubbleField"></div></div></section>
+
+<section id="clock" class="game clockmode"><div class="gamebar"><button class="back" onclick="goHome()" data-i18n="back">← 返回</button><div class="gametitle" data-i18n="clockTitle">时间</div><div class="tiny" data-i18n="clockTiny">自动同步</div></div><div class="gamecontent"><div class="clockface"><div class="digital" id="digital">00:00:00</div><div class="date" id="date"></div><div class="zone" data-i18n="clockZone">设备当前时区 · 自动同步</div></div></div></section>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
